@@ -1,0 +1,52 @@
+-- Sample user profile for testing the training plan generation
+-- User wants to gain muscle with Push/Pull/Legs split
+
+INSERT INTO user_profiles (
+  id,
+  full_name,
+  date_of_birth,
+  height_cm,
+  weight_kg,
+  training_experience_years,
+  current_training_split,
+  training_days_per_week,
+  does_cardio,
+  cardio_type,
+  cardio_frequency_per_week,
+  preferred_training_time,
+  wake_up_time,
+  bed_time,
+  short_term_goal,
+  long_term_goal,
+  primary_fitness_goal,
+  preferred_workout_duration,
+  profile_completed,
+  training_location_type,
+  dietary_preferences,
+  user_wants,
+  user_avoids
+) VALUES (
+  '88379d49-2302-4a1c-a8c0-e289c25ac7f2', -- Replace with your actual user ID
+  'Test User',
+  '1995-06-15',
+  180,
+  75,
+  2,
+  'Push/Pull/Legs',
+  6,
+  true,
+  'Treadmill',
+  2,
+  'Morning',
+  '06:00',
+  '22:30',
+  'Gain 5kg muscle mass in 6 months',
+  'Build a strong, aesthetic physique',
+  'Muscle Building',
+  75,
+  true,
+  'generic_gym',
+  '["High Protein"]',
+  'Compound movements, progressive overload, bench press variations',
+  'Isolation exercises on legs, long cardio sessions'
+);

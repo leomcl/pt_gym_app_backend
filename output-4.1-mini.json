@@ -1,0 +1,407 @@
+{
+  "totalWeeks": 2,
+  "weeks": [
+    {
+      "weekNumber": 1,
+      "notes": "Focus on balancing strength (compound movements) and HIIT for fat loss and muscle tone.",
+      "days": [
+        {
+          "dayNumber": 1,
+          "dayName": "Push + HIIT Treadmill",
+          "notes": "Begin with dynamic warm-up and end with treadmill HIIT.",
+          "exercises": [
+            {
+              "name": "Warm-up: Dynamic Shoulder Circles and Arm Swings",
+              "sets": 1,
+              "reps": "5 minutes",
+              "notes": "Prepare upper body for pushing movements."
+            },
+            {
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": "8-10",
+              "notes": "Use challenging weight focusing on controlled tempo."
+            },
+            {
+              "name": "Overhead Barbell Press",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Incline Dumbbell Press",
+              "sets": 3,
+              "reps": "10-12"
+            },
+            {
+              "name": "Dips (Assisted if needed)",
+              "sets": 3,
+              "reps": "12"
+            },
+            {
+              "name": "Treadmill HIIT (1 min sprint / 1.5 min walk)",
+              "sets": 8,
+              "reps": "Segments",
+              "notes": "Total 20 minutes including warm-up and cool-down."
+            }
+          ]
+        },
+        {
+          "dayNumber": 2,
+          "dayName": "Pull + Cycling Intervals",
+          "notes": "Warm-up followed by compound pulling exercises and cycling intervals.",
+          "exercises": [
+            {
+              "name": "Warm-up: Band Pull-aparts and Scapular Retractions",
+              "sets": 1,
+              "reps": "5 minutes"
+            },
+            {
+              "name": "Deadlifts",
+              "sets": 4,
+              "reps": "6-8",
+              "notes": "Focus on form and moderate heavy weight."
+            },
+            {
+              "name": "Pull-ups or Assisted Pull-ups",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Barbell Bent-over Rows",
+              "sets": 3,
+              "reps": "8-10"
+            },
+            {
+              "name": "Face Pulls",
+              "sets": 3,
+              "reps": "12"
+            },
+            {
+              "name": "Cycling Intervals (30 sec high resistance / 90 sec low)",
+              "sets": 8,
+              "reps": "Intervals",
+              "notes": "Total 20 minutes including warm-up."
+            }
+          ]
+        },
+        {
+          "dayNumber": 3,
+          "dayName": "Rest Day",
+          "notes": "Active recovery recommended: light walking or stretching."
+        },
+        {
+          "dayNumber": 4,
+          "dayName": "Legs + HIIT Treadmill",
+          "notes": "Warm-up with mobility drills; focus on compound leg work and treadmill HIIT.",
+          "exercises": [
+            {
+              "name": "Warm-up: Bodyweight Squats and Hip Circles",
+              "sets": 1,
+              "reps": "5 minutes"
+            },
+            {
+              "name": "Barbell Back Squats",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Romanian Deadlifts",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Walking Lunges",
+              "sets": 3,
+              "reps": "12 per leg"
+            },
+            {
+              "name": "Box Jumps (Explosive plyometric)",
+              "sets": 3,
+              "reps": "10"
+            },
+            {
+              "name": "Treadmill HIIT (45 sec sprint / 90 sec walk)",
+              "sets": 8,
+              "reps": "Intervals"
+            }
+          ]
+        },
+        {
+          "dayNumber": 5,
+          "dayName": "Push + Cycling Intervals",
+          "notes": "Repeat push focus with slight exercise variation and cycling HIIT.",
+          "exercises": [
+            {
+              "name": "Warm-up: Arm Circles and Band Pull-aparts",
+              "sets": 1,
+              "reps": "5 minutes"
+            },
+            {
+              "name": "Incline Barbell Bench Press",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 4,
+              "reps": "10-12"
+            },
+            {
+              "name": "Close-Grip Barbell Bench Press",
+              "sets": 3,
+              "reps": "8-10"
+            },
+            {
+              "name": "Diamond Push-ups",
+              "sets": 3,
+              "reps": "12-15"
+            },
+            {
+              "name": "Cycling Intervals (30 sec sprint / 90 sec easy pedaling)",
+              "sets": 8,
+              "reps": "Intervals"
+            }
+          ]
+        },
+        {
+          "dayNumber": 6,
+          "dayName": "Pull + Legs Light Circuit",
+          "notes": "Light day with circuit style to maintain calorie burn and active recovery.",
+          "exercises": [
+            {
+              "name": "Warm-up: Jump Rope and Mobility Drills",
+              "sets": 1,
+              "reps": "5 minutes"
+            },
+            {
+              "name": "Kettlebell Swings",
+              "sets": 3,
+              "reps": "15"
+            },
+            {
+              "name": "Bodyweight Pull-ups",
+              "sets": 3,
+              "reps": "Max reps"
+            },
+            {
+              "name": "Goblet Squats",
+              "sets": 3,
+              "reps": "15"
+            },
+            {
+              "name": "TRX Rows or Ring Rows",
+              "sets": 3,
+              "reps": "12"
+            },
+            {
+              "name": "Stationary Cycling Low Intensity",
+              "sets": 1,
+              "reps": "20 minutes"
+            }
+          ]
+        },
+        {
+          "dayNumber": 7,
+          "dayName": "Rest Day",
+          "notes": "Complete rest or gentle yoga/stretching recommended."
+        }
+      ]
+    },
+    {
+      "weekNumber": 2,
+      "notes": "Increase weights by ~5% on compound lifts if possible; maintain HIIT intensity.",
+      "days": [
+        {
+          "dayNumber": 1,
+          "dayName": "Push + Treadmill HIIT",
+          "notes": "Introduce tempo changes for increased muscle tension.",
+          "exercises": [
+            {
+              "name": "Warm-up: Dynamic Shoulder Mobility",
+              "sets": 1,
+              "reps": "5 minutes"
+            },
+            {
+              "name": "Tempo Barbell Bench Press (3s down, 1s up)",
+              "sets": 4,
+              "reps": "8"
+            },
+            {
+              "name": "Overhead Barbell Press",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Incline Dumbbell Flyes",
+              "sets": 3,
+              "reps": "10-12"
+            },
+            {
+              "name": "Dips",
+              "sets": 3,
+              "reps": "12"
+            },
+            {
+              "name": "Treadmill HIIT (1 min sprint / 1.5 min walk)",
+              "sets": 8,
+              "reps": "Intervals"
+            }
+          ]
+        },
+        {
+          "dayNumber": 2,
+          "dayName": "Pull + Cycling Intervals",
+          "exercises": [
+            {
+              "name": "Warm-up: Band Pull-aparts and Face Pulls",
+              "sets": 1,
+              "reps": "5 minutes"
+            },
+            {
+              "name": "Deadlifts",
+              "sets": 4,
+              "reps": "6-8"
+            },
+            {
+              "name": "Pull-ups or Negative Pull-ups",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Barbell Rows",
+              "sets": 3,
+              "reps": "8-10"
+            },
+            {
+              "name": "Face Pulls",
+              "sets": 3,
+              "reps": "12"
+            },
+            {
+              "name": "Cycling Intervals (30 sec high resistance / 90 sec low)",
+              "sets": 8,
+              "reps": "Intervals"
+            }
+          ]
+        },
+        {
+          "dayNumber": 3,
+          "dayName": "Rest Day",
+          "notes": "Focus on hydration and mobility work."
+        },
+        {
+          "dayNumber": 4,
+          "dayName": "Legs + Treadmill HIIT",
+          "exercises": [
+            {
+              "name": "Warm-up: Bodyweight Squats, Hip Circles",
+              "sets": 1,
+              "reps": "5 minutes"
+            },
+            {
+              "name": "Barbell Back Squats",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Walking Lunges",
+              "sets": 3,
+              "reps": "12 per leg"
+            },
+            {
+              "name": "Box Jumps",
+              "sets": 3,
+              "reps": "10"
+            },
+            {
+              "name": "Treadmill HIIT (45 sec sprint / 90 sec walk)",
+              "sets": 8,
+              "reps": "Intervals"
+            }
+          ]
+        },
+        {
+          "dayNumber": 5,
+          "dayName": "Push + Cycling Intervals",
+          "exercises": [
+            {
+              "name": "Warm-up: Arm Circles and Band Pull-aparts",
+              "sets": 1,
+              "reps": "5 minutes"
+            },
+            {
+              "name": "Incline Barbell Bench Press",
+              "sets": 4,
+              "reps": "8-10"
+            },
+            {
+              "name": "Seated Dumbbell Press",
+              "sets": 4,
+              "reps": "10-12"
+            },
+            {
+              "name": "Close-Grip Bench Press",
+              "sets": 3,
+              "reps": "8-10"
+            },
+            {
+              "name": "Diamond Push-ups",
+              "sets": 3,
+              "reps": "12-15"
+            },
+            {
+              "name": "Cycling Intervals (30 sec sprint / 90 sec easy pedaling)",
+              "sets": 8,
+              "reps": "Intervals"
+            }
+          ]
+        },
+        {
+          "dayNumber": 6,
+          "dayName": "Pull + Legs Light Circuit",
+          "exercises": [
+            {
+              "name": "Warm-up: Jump Rope and Mobility Drills",
+              "sets": 1,
+              "reps": "5 minutes"
+            },
+            {
+              "name": "Kettlebell Swings",
+              "sets": 3,
+              "reps": "15"
+            },
+            {
+              "name": "Bodyweight Pull-ups",
+              "sets": 3,
+              "reps": "Max reps"
+            },
+            {
+              "name": "Goblet Squats",
+              "sets": 3,
+              "reps": "15"
+            },
+            {
+              "name": "TRX Rows or Ring Rows",
+              "sets": 3,
+              "reps": "12"
+            },
+            {
+              "name": "Stationary Cycling Low Intensity",
+              "sets": 1,
+              "reps": "20 minutes"
+            }
+          ]
+        },
+        {
+          "dayNumber": 7,
+          "dayName": "Rest Day"
+        }
+      ]
+    }
+  ]
+}
