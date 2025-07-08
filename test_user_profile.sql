@@ -1,5 +1,5 @@
 -- Sample user profile for testing the training plan generation
--- User wants to gain muscle with Push/Pull/Legs split
+-- User wants to gain muscle with 3-day Push/Pull/Legs split, no cardio
 
 INSERT INTO user_profiles (
   id,
@@ -33,10 +33,10 @@ INSERT INTO user_profiles (
   75,
   2,
   'Push/Pull/Legs',
-  6,
-  true,
-  'Treadmill',
-  2,
+  3,
+  false,
+  null,
+  null,
   'Morning',
   '06:00',
   '22:30',
@@ -48,5 +48,5 @@ INSERT INTO user_profiles (
   'generic_gym',
   '["High Protein"]',
   'Compound movements, progressive overload, bench press variations',
-  'Isolation exercises on legs, long cardio sessions'
+  'Isolation exercises on legs, cardio sessions'
 );

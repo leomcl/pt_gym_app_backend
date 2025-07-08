@@ -223,17 +223,51 @@ Deno.serve(async (req) => {
       // Instructions for the LLM
       prompt += `\n=== TRAINING PLAN REQUIREMENTS ===\n`
       prompt += `Please create a comprehensive training plan that includes:\n`
-      prompt += `1. Weekly schedule breakdown (${profile.training_days_per_week} days)\n`
-      prompt += `2. Specific exercises with sets, reps, and weights/progression\n`
-      prompt += `3. Warm-up routines\n`
-      prompt += `4. Single week format (no totalWeeks field needed)\n`
-      prompt += `5. Rest day recommendations\n`
+      prompt += `1. MANDATORY: Complete 7-day weekly schedule (days 1-7) - ALL 7 DAYS MUST BE INCLUDED\n`
+      prompt += `2. Training days: ${profile.training_days_per_week} workout days with specific exercises\n`
+      prompt += `3. Rest days: ${7 - profile.training_days_per_week} rest days strategically placed for optimal recovery\n`
+      prompt += `4. Specific exercises with sets, reps, and weights/progression\n`
+      prompt += `5. Single week format (no totalWeeks field needed)\n`
       
       if (profile.does_cardio) {
         prompt += `6. Cardio integration (${profile.cardio_frequency_per_week}x per week)\n`
       }
       
       prompt += `7. The JSON output MUST be minified into a single line, with no newlines or indentation.\n`
+      
+      // Strategic rest day placement guidance
+      prompt += `\n=== STRATEGIC REST DAY PLACEMENT ===\n`
+      prompt += `CRITICAL: Apply modern sports science principles for rest day placement:\n`
+      prompt += `1. MUSCLE RECOVERY TIMING: Allow 48-72 hours between training the same muscle groups\n`
+      prompt += `2. PATTERN DISTRIBUTION: Avoid consecutive high-intensity days targeting similar movement patterns\n`
+      prompt += `3. WEEKLY STRUCTURE: Distribute rest days to optimize recovery and performance\n`
+      
+      // Specific guidance based on training frequency
+      if (profile.training_days_per_week === 3) {
+        prompt += `FOR 3-DAY TRAINING:\n`
+        prompt += `- Place rest days between training days (e.g., Train-Rest-Train-Rest-Train-Rest-Rest)\n`
+        prompt += `- Ensure at least 1 day between each workout for full recovery\n`
+        prompt += `- Weekend can have 2 consecutive rest days for lifestyle balance\n`
+      } else if (profile.training_days_per_week === 4) {
+        prompt += `FOR 4-DAY TRAINING:\n`
+        prompt += `- Use patterns similar to 2-on-1-off-2-on-2-off or upper/lower splits\n`
+        prompt += `- Separate muscle groups with strategic rest placement\n`
+        prompt += `- Place rest day mid-week to break up training stress\n`
+      } else if (profile.training_days_per_week === 5) {
+        prompt += `FOR 5-DAY TRAINING:\n`
+        prompt += `- Use patterns similar to 3-on-1-off-2-on-1-off or body part splits\n`
+        prompt += `- Ensure rest days separate high-intensity compound movement days\n`
+        prompt += `- Place rest days before/after heaviest training days\n`
+      } else if (profile.training_days_per_week === 6) {
+        prompt += `FOR 6-DAY TRAINING:\n`
+        prompt += `- Use patterns similar to push/pull/legs or upper/lower splits\n`
+        prompt += `- Ensure rest day separates repeated movement patterns\n`
+        prompt += `- Place rest day before most demanding training session\n`
+      }
+      
+      prompt += `4. ACTIVE RECOVERY: Rest days should include light activity, mobility work, or low-intensity cardio\n`
+      prompt += `5. MUSCLE GROUP SPACING: Ensure major muscle groups get adequate recovery time\n`
+      prompt += `6. CENTRAL NERVOUS SYSTEM: Allow CNS recovery between high-intensity sessions\n`
       
       // Experience-based adaptations
       prompt += `\n=== EXPERIENCE-BASED ADAPTATIONS ===\n`
@@ -383,8 +417,9 @@ Deno.serve(async (req) => {
     * Position 3-4: Secondary compound movements (lunges, dips, pull-ups) - moderate neural demand  
     * Position 5-6: Isolation movements (curls, extensions, raises) - low neural demand
     * Position 7-8: Corrective/mobility exercises or metabolic finishers
-11. **Single Week Structure:** The plan contains exactly one week of training with 7 days (dayNumber 1-7).
-12. **Rest Days:** For rest days, the \`dayName\` must be \"Rest Day\", \`notes\` should contain an active recovery suggestion, and the \`exercises\` array MUST be empty but present.
+11. **MANDATORY 7-DAY STRUCTURE:** The plan MUST contain exactly 7 days (dayNumber 1-7). NO EXCEPTIONS. Every day from 1 to 7 must be present in the JSON output.
+12. **Rest Days:** For rest days, the \`dayName\` must be \"Rest Day\", \`notes\` should contain active recovery protocols and mobility focus areas, and the \`exercises\` array MUST be empty but present.
+13. **Strategic Rest Placement:** Rest days must be strategically placed based on muscle recovery science - allow 48-72 hours between training the same muscle groups. Consider movement patterns, training intensity, and central nervous system recovery.
 ## JSON Schema Example:
 { "weekNumber": 1, "notes": "string (optional)", "days": [{"dayNumber": "integer", "dayName": "string", "notes": "string (mandatory)", "exercises": [{ "name": "string", "sets": "integer", "reps": "string", "notes": "string (optional)"}]}]}`
           },
