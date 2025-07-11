@@ -22,6 +22,9 @@ interface AnalysisResult {
   weekDateRange: string
   cumulativeWants?: string
   cumulativeAvoids?: string
+  hasPain?: boolean
+  area?: string
+  cause?: string
 }
 
 Deno.serve(async (req) => {
@@ -76,6 +79,24 @@ Deno.serve(async (req) => {
         })
       }
 
+      // Validate pain parameters if hasPain is true
+      if (requestBody.hasPain === true) {
+        const painFields = ['area', 'cause']
+        const missingPainFields = painFields.filter(field => !requestBody[field])
+        
+        if (missingPainFields.length > 0) {
+          console.log(`[INPUT] Missing pain fields: ${missingPainFields.join(', ')}`)
+          return new Response(JSON.stringify({ 
+            error: 'Missing pain fields',
+            missingFields: missingPainFields,
+            details: 'When hasPain is true, both area and cause must be provided'
+          }), { 
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+          })
+        }
+      }
+
       // Validate recommendation type
       const validRecommendations = ['maintain', 'increase', 'decrease', 'modify', 'deload']
       if (!validRecommendations.includes(requestBody.recommendation)) {
@@ -94,6 +115,7 @@ Deno.serve(async (req) => {
       console.log(`[INPUT] Analysis result parsed - Recommendation: ${analysisResult.recommendation}, Confidence: ${analysisResult.confidence}`)
       console.log(`[INPUT] CumulativeWants: ${analysisResult.cumulativeWants || 'Not provided'}`)
       console.log(`[INPUT] CumulativeAvoids: ${analysisResult.cumulativeAvoids || 'Not provided'}`)
+      console.log(`[INPUT] HasPain: ${analysisResult.hasPain || false}, Area: ${analysisResult.area || 'Not provided'}, Cause: ${analysisResult.cause || 'Not provided'}`)
       
     } catch (parseError) {
       console.error(`[INPUT] Error parsing request body: ${parseError.message}`)
@@ -194,6 +216,16 @@ Deno.serve(async (req) => {
       })
       prompt += `\n`
       
+      // Pain Information (if provided)
+      if (analysisResult.hasPain) {
+        prompt += `=== PAIN/INJURY INFORMATION ===\n`
+        prompt += `**CRITICAL OVERRIDE**: User has reported pain/injury\n`
+        prompt += `Pain Area: ${analysisResult.area}\n`
+        prompt += `Pain Cause: ${analysisResult.cause}\n`
+        prompt += `**MANDATORY MODIFICATION**: This pain information overrides all other training modifications\n`
+        prompt += `\n`
+      }
+      
       // Cumulative Wants and Avoids (if provided)
       if (analysisResult.cumulativeWants || analysisResult.cumulativeAvoids) {
         prompt += `=== CUMULATIVE USER PREFERENCES ===\n`
@@ -213,6 +245,21 @@ Deno.serve(async (req) => {
       
       // Modification Instructions
       prompt += `=== MODIFICATION INSTRUCTIONS ===\n`
+      
+      // Pain Override Logic
+      if (analysisResult.hasPain) {
+        prompt += `**PAIN RECOVERY PROTOCOL** (OVERRIDES ALL OTHER MODIFICATIONS):\n`
+        prompt += `- IMMEDIATELY avoid all exercises that stress the ${analysisResult.area} area\n`
+        prompt += `- Replace painful exercises with pain-free alternatives that don't load the injured area\n`
+        prompt += `- Reduce intensity to RPE 5-6 for exercises involving the ${analysisResult.area}\n`
+        prompt += `- Focus on maintaining strength in unaffected body parts at normal intensity\n`
+        prompt += `- Include gentle mobility and recovery exercises for the ${analysisResult.area}\n`
+        prompt += `- Add specific rehabilitation exercises targeting the ${analysisResult.cause} if appropriate\n`
+        prompt += `- Prioritize exercises that promote healing and prevent compensation patterns\n`
+        prompt += `- Example: If knee pain, maintain all upper body exercises at full intensity, modify or eliminate lower body exercises that cause pain\n`
+        prompt += `- Add notes about pain monitoring and when to progress/regress exercises\n`
+        prompt += `\n`
+      }
       
       switch (analysisResult.recommendation) {
         case 'maintain':
@@ -349,30 +396,33 @@ Deno.serve(async (req) => {
 4. **Program Structure:** The training plan must follow a logical structure (e.g., Push/Pull/Legs, Upper/Lower, Full Body split) and demonstrate the principle of **progressive overload**.
 5. Each training day MUST contain between 6 and 8 exercises. The workout should be structured logically: Begin with 1-2 primary compound movements, followed by 3-4 secondary/accessory movements, and conclude with 1-2 isolation or finisher exercises.
 6. **Volume Constraints:** Each exercise MUST have a maximum of 3 sets and a maximum of 12 reps per set. Never exceed these limits.
-7. **USER PREFERENCES:** If cumulative wants and avoids are provided, the modified workout MUST contain exercises that fulfill the user's WANTS and MUST NOT contain any exercises that are in the AVOIDS list. When provided, these preferences are mandatory and non-negotiable.
-8. **Scientific Programming Principles:**
+7. **PAIN/INJURY PRIORITY:** If hasPain is true, pain management and recovery takes absolute priority over all other modifications. The plan must be completely restructured around avoiding the injured area while maintaining training for unaffected body parts. This overrides all other considerations including user preferences and analysis recommendations.
+8. **USER PREFERENCES:** If cumulative wants and avoids are provided, the modified workout MUST contain exercises that fulfill the user's WANTS and MUST NOT contain any exercises that are in the AVOIDS list. When provided, these preferences are mandatory and non-negotiable.
+9. **Scientific Programming Principles:**
     * **Week Notes:** Include weekly volume targets (total sets per muscle group), progressive overload strategy, and deload recommendations every 4-6 weeks.
     * **Movement Pattern Balance:** Ensure push/pull ratios (1:1 or 2:3), hip hinge/squat balance, and unilateral/bilateral exercise distribution.
     * **Volume Landmarks:** Follow evidence-based volume guidelines: Beginners 10-14 sets/muscle/week, Intermediate 14-20 sets/muscle/week, Advanced 16-26 sets/muscle/week.
-9. **Day Notes (Mandatory - Scientific Focus):**
+10. **Day Notes (Mandatory - Scientific Focus):**
     * MUST include target RPE range for the day (e.g., "Target RPE: 7-8 for all compound movements, 8-9 for isolation")
     * MUST specify rest periods between exercises based on training goal: Strength (3-5min), Hypertrophy (60-90s), Endurance (30-60s)
     * MUST include movement pattern focus (e.g., "Focus: Hip hinge dominance with explosive concentric")
     * MUST include fatigue management cues (e.g., "Monitor bar speed - stop set if velocity drops >20%")
     * For rest days: Include active recovery protocols and mobility focus areas.
-10. **Exercise Execution (Scientific Precision):**
+    * For pain management: Include specific pain monitoring instructions and modification cues.
+11. **Exercise Execution (Scientific Precision):**
     * **Exercise Name:** Include tempo prescriptions in format: "Exercise Name (Eccentric-Pause-Concentric-Rest)". Example: "Bench Press (3-1-2-0)" = 3sec down, 1sec pause, 2sec up, no rest at top.
     * **Reps Field:** Use RPE-based ranges: "8-10 @ RPE 7-8" or percentage-based: "6-8 @ 75-80%" or time under tension: "10-12 (3sec negatives)".
     * **Load Prescription:** For beginners use bodyweight/%BW recommendations, intermediate use RPE 6-8, advanced use RPE 7-9.
     * **Exercise Notes:** Include starting load recommendations, form cues, range of motion requirements, and rest between sets.
-11. **Exercise Ordering (Evidence-Based Sequencing):**
+12. **Exercise Ordering (Evidence-Based Sequencing):**
     * Position 1-2: Primary compound movements (squats, deadlifts, bench, rows) - highest neural demand
     * Position 3-4: Secondary compound movements (lunges, dips, pull-ups) - moderate neural demand  
     * Position 5-6: Isolation movements (curls, extensions, raises) - low neural demand
     * Position 7-8: Corrective/mobility exercises or metabolic finishers
-12. **Single Week Structure:** The plan contains exactly one week of training with 7 days (dayNumber 1-7).
-13. **Rest Days:** For rest days, the \`dayName\` must be \"Rest Day\", \`notes\` should contain an active recovery suggestion, and the \`exercises\` array MUST be empty but present.
-14. **Modification Focus:** The plan must clearly reflect the analysis recommendation (maintain, increase, decrease, modify, or deload).
+13. **Single Week Structure:** The plan contains exactly one week of training with 7 days (dayNumber 1-7).
+14. **Rest Days:** For rest days, the \`dayName\` must be \"Rest Day\", \`notes\` should contain an active recovery suggestion, and the \`exercises\` array MUST be empty but present.
+15. **Modification Focus:** The plan must clearly reflect the analysis recommendation (maintain, increase, decrease, modify, or deload).
+16. **Pain Management Priority:** When hasPain is true, immediately restructure the plan to avoid loading the injured area while maintaining training intensity for unaffected body parts. Include pain monitoring cues and recovery-focused modifications.
 ## JSON Schema Example:
 { "weekNumber": 1, "notes": "string (optional)", "days": [{"dayNumber": "integer", "dayName": "string", "notes": "string (mandatory)", "exercises": [{ "name": "string", "sets": "integer", "reps": "string", "notes": "string (optional)"}]}]}`
             },
