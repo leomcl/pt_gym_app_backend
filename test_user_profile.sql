@@ -6,7 +6,6 @@ INSERT INTO user_profiles (
   full_name,
   date_of_birth,
   height_cm,
-  weight_kg,
   training_experience_years,
   current_training_split,
   training_days_per_week,
@@ -24,13 +23,13 @@ INSERT INTO user_profiles (
   training_location_type,
   dietary_preferences,
   user_wants,
-  user_avoids
+  user_avoids,
+  target_weight_kg
 ) VALUES (
   '88379d49-2302-4a1c-a8c0-e289c25ac7f2', -- Replace with your actual user ID
   'Test User',
   '1995-06-15',
   180,
-  75,
   2,
   'Push/Pull/Legs',
   3,
@@ -48,5 +47,6 @@ INSERT INTO user_profiles (
   'generic_gym',
   '["High Protein"]',
   'Compound movements, progressive overload, bench press variations',
-  'Isolation exercises on legs, cardio sessions'
+  'Isolation exercises on legs, cardio sessions',
+  75
 );
