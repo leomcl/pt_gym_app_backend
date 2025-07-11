@@ -72,7 +72,6 @@ Deno.serve(async (req) => {
         full_name,
         date_of_birth,
         height_cm,
-        weight_kg,
         training_experience_years,
         current_training_split,
         training_days_per_week,
@@ -91,7 +90,8 @@ Deno.serve(async (req) => {
         dietary_preferences,
         allergies,
         user_wants,
-        user_avoids
+        user_avoids,
+        target_weight_kg
       `)
       .eq('id', user.id)
       .single()
@@ -158,8 +158,8 @@ Deno.serve(async (req) => {
       prompt += `=== USER PROFILE ===\n`
       if (profile.full_name) prompt += `Name: ${profile.full_name}\n`
       if (age) prompt += `Age: ${age} years old\n`
-      if (profile.height_cm && profile.weight_kg) {
-        prompt += `Physical Stats: ${profile.height_cm}cm, ${profile.weight_kg}kg\n`
+      if (profile.height_cm) {
+        prompt += `Physical Stats: ${profile.height_cm}cm\n`
       }
       
       // Training Background
