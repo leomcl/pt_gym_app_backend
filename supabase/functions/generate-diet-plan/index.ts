@@ -242,9 +242,9 @@ Deno.serve(async (req) => {
       prompt += `Daily Protein (g): [number]\n`
       prompt += `Daily Carbs (g): [number]\n`
       prompt += `Daily Fat (g): [number]\n`
-      prompt += `Notes: [Brief motivational note commenting on their weight progress, training consistency, and why their nutrition plan supports their goals - keep it encouraging and simple]\n\n`
+      prompt += `Notes: [detailed explanation of calculations, BMR, TDEE, goal-based adjustments, macronutrient rationale, and weight trend considerations]\n\n`
       
-      prompt += `Keep the Notes section brief, motivational, and focused on their progress and goals - not technical calculations.`
+      prompt += `Include detailed reasoning in the Notes section explaining your calculations and recommendations.`
       
       return prompt
     }
@@ -284,7 +284,7 @@ Deno.serve(async (req) => {
         },
         signal: controller.signal,
         body: JSON.stringify({
-          model: 'gpt-4o-mini',
+          model: 'gpt-4.1-mini',
           messages: [
             {
               role: 'system',
