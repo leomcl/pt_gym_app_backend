@@ -237,14 +237,14 @@ Deno.serve(async (req) => {
       prompt += `6. Account for training frequency and intensity\n`
       prompt += `7. Factor in weight history trends for caloric adjustments\n\n`
       
-      prompt += `Provide the numerical values AND reasoning in this exact format:\n`
+      prompt += `Provide the numerical values AND simple reasoning in this exact format:\n`
       prompt += `Daily Calories: [number]\n`
       prompt += `Daily Protein (g): [number]\n`
       prompt += `Daily Carbs (g): [number]\n`
       prompt += `Daily Fat (g): [number]\n`
-      prompt += `Notes: [detailed explanation of calculations, BMR, TDEE, goal-based adjustments, macronutrient rationale, and weight trend considerations]\n\n`
+      prompt += `Notes: [Brief explanation: Are calories set for deficit/maintenance/surplus? Why are these macros important for their specific goals? Keep it simple and goal-focused, no calculation details.]\n\n`
       
-      prompt += `Include detailed reasoning in the Notes section explaining your calculations and recommendations.`
+      prompt += `Keep Notes section concise and focused on whether calories support their goals and why macros matter for their specific objectives.`
       
       return prompt
     }
