@@ -141,7 +141,6 @@ Deno.serve(async (req) => {
             full_name,
             date_of_birth,
             height_cm,
-            weight_kg,
             training_experience_years,
             current_training_split,
             training_days_per_week,
@@ -159,7 +158,8 @@ Deno.serve(async (req) => {
             dietary_preferences,
             allergies,
             user_wants,
-            user_avoids
+            user_avoids,
+            target_weight_kg
           `)
           .eq('id', user.id)
           .single(),
